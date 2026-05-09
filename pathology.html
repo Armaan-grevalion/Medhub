@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pathology | MedLearn</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    display:flex;
+    background:
+    linear-gradient(135deg,#020617,#1e1b4b,#312e81);
+    color:white;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:280px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    overflow-y:auto;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px);
+    border-right:1px solid rgba(255,255,255,0.08);
+    padding:30px 22px;
+    z-index:1000;
+}
+
+.logo{
+    font-size:2.3rem;
+    font-weight:700;
+    margin-bottom:8px;
+
+    background:linear-gradient(90deg,#c4b5fd,#818cf8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.logo-sub{
+    color:#ddd6fe;
+    font-size:0.95rem;
+    line-height:1.7;
+    margin-bottom:35px;
+}
+
+/* NAVIGATION */
+
+.nav-container{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.nav-heading{
+    color:#c4b5fd;
+    font-size:1rem;
+    margin-bottom:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:#e0e7ff;
+    padding:16px 18px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.04);
+    transition:0.35s;
+    font-weight:500;
+}
+
+.sidebar a:hover{
+    transform:translateX(8px);
+    background:linear-gradient(135deg,
+    rgba(139,92,246,0.35),
+    rgba(99,102,241,0.25));
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+.home-btn{
+    margin-top:25px;
+    background:linear-gradient(135deg,#7c3aed,#4338ca) !important;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:280px;
+    width:calc(100% - 280px);
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 10%;
+    position:relative;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(139,92,246,0.15);
+    border-radius:50%;
+    filter:blur(120px);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1000px;
+}
+
+.hero h1{
+    font-size:5rem;
+    margin-bottom:25px;
+    line-height:1.1;
+
+    background:linear-gradient(
+    90deg,
+    #c4b5fd,
+    #a78bfa,
+    #818cf8);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    line-height:2;
+    font-size:1.1rem;
+    color:#ddd6fe;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-buttons a{
+    display:inline-block;
+    padding:15px 32px;
+    margin:10px;
+    border-radius:18px;
+    text-decoration:none;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+    color:white;
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.hero-buttons a:hover{
+    transform:translateY(-6px);
+}
+
+/* SECTIONS */
+
+.section{
+    padding:75px 8%;
+}
+
+.section-title{
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:2.8rem;
+    margin-bottom:15px;
+    color:#c4b5fd;
+}
+
+.section-title p{
+    color:#ddd6fe;
+    line-height:1.9;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+/* CARDS */
+
+.card,
+.grid-card{
+    background:rgba(255,255,255,0.06);
+    border-radius:26px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    transition:0.4s;
+}
+
+.card:hover,
+.grid-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+.card p,
+.grid-card p{
+    line-height:2;
+    color:#e0e7ff;
+}
+
+.grid-card h3{
+    margin-bottom:14px;
+    color:#c4b5fd;
+}
+
+/* FLASHCARDS */
+
+.flash-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.flashcard{
+    perspective:1000px;
+    height:230px;
+}
+
+.inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:transform 0.8s;
+}
+
+.flashcard:hover .inner{
+    transform:rotateY(180deg);
+}
+
+.front,
+.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:24px;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    backface-visibility:hidden;
+    font-weight:600;
+}
+
+.front{
+    background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+}
+
+.back{
+    background:linear-gradient(135deg,#7c3aed,#4338ca);
+    transform:rotateY(180deg);
+}
+
+/* MCQ */
+
+.mcq{
+    background:rgba(255,255,255,0.06);
+    padding:28px;
+    border-radius:24px;
+    margin-bottom:25px;
+}
+
+button{
+    margin-top:18px;
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+    color:white;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+.answer{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(139,92,246,0.15);
+    color:#ddd6fe;
+}
+
+/* CASE */
+
+.case{
+    background:rgba(255,255,255,0.06);
+    padding:35px;
+    border-radius:26px;
+    line-height:2;
+}
+
+/* TIPS */
+
+.tip{
+    background:
+    linear-gradient(135deg,#ddd6fe,#a78bfa);
+
+    color:#1e1b4b;
+    padding:18px 20px;
+    border-radius:16px;
+    margin-bottom:16px;
+    font-weight:600;
+}
+
+/* REFERENCES */
+
+.references ul{
+    padding-left:22px;
+    line-height:2.3;
+    color:#e0e7ff;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:45px;
+    color:#c4b5fd;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .hero h1{
+        font-size:3.2rem;
+    }
+}
+
+</style>
+
+<script>
+
+function toggleAnswer(id){
+
+    let el=document.getElementById(id);
+
+    if(el.style.display==="block"){
+        el.style.display="none";
+    }else{
+        el.style.display="block";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">MedLearn</div>
+
+    <div class="logo-sub">
+        Interactive Pathology Learning Module for Medical Students
+    </div>
+
+    <div class="nav-heading">
+        Navigation
+    </div>
+
+    <div class="nav-container">
+
+        <a href="#intro">🏠 Introduction</a>
+
+        <a href="#injury">⚠️ Cell Injury</a>
+
+        <a href="#inflammation">🔥 Inflammation</a>
+
+        <a href="#neoplasia">🧬 Neoplasia</a>
+
+        <a href="#adaptation">🔬 Cellular Adaptation</a>
+
+        <a href="#flashcards">🧠 Flashcards</a>
+
+        <a href="#mcq">📝 MCQs</a>
+
+        <a href="#case">📋 Case Study</a>
+
+        <a href="#tips">💡 Clinical Tips</a>
+
+        <a href="#references">📚 References</a>
+
+        <a href="index.html" class="home-btn">
+            ⬅ Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- HERO -->
+
+<section class="hero" id="intro">
+
+    <div class="hero-content">
+
+        <h1>Pathology</h1>
+
+        <p>
+            Pathology is the scientific study of disease, focusing on
+            the causes, mechanisms, structural changes, and clinical
+            consequences of abnormal conditions. It bridges basic
+            science with clinical medicine by explaining how disease
+            develops at cellular, tissue, and systemic levels.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#injury" class="primary-btn">
+                Explore Module
+            </a>
+
+            <a href="#flashcards" class="secondary-btn">
+                Start Revision
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CELL INJURY -->
+
+<section class="section" id="injury">
+
+    <div class="section-title">
+
+        <h2>⚠️ Cell Injury</h2>
+
+        <p>
+            Cellular injury occurs when stress exceeds the adaptive
+            capacity of cells.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Reversible Injury</h3>
+
+            <p>
+                Includes cell swelling, fatty change, and membrane
+                blebbing that can recover if the stress is removed.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Irreversible Injury</h3>
+
+            <p>
+                Leads to necrosis or apoptosis with permanent
+                cellular damage and death.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Major Causes</h3>
+
+            <p>
+                Hypoxia, toxins, infections, immune reactions,
+                nutritional imbalance, and genetic abnormalities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INFLAMMATION -->
+
+<section class="section" id="inflammation">
+
+    <div class="section-title">
+
+        <h2>🔥 Inflammation</h2>
+
+        <p>
+            Protective response involving immune cells, blood vessels,
+            and molecular mediators.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Acute Inflammation</h3>
+
+            <p>
+                Rapid onset with neutrophil predominance and vascular changes.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Chronic Inflammation</h3>
+
+            <p>
+                Persistent inflammation involving macrophages,
+                lymphocytes, and tissue destruction.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Cardinal Signs</h3>
+
+            <p>
+                Redness, heat, swelling, pain, and loss of function.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NEOPLASIA -->
+
+<section class="section" id="neoplasia">
+
+    <div class="section-title">
+
+        <h2>🧬 Neoplasia</h2>
+
+        <p>
+            Abnormal uncontrolled cellular proliferation forming tumors.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Benign Tumors</h3>
+
+            <p>
+                Localized growths that generally do not invade
+                surrounding tissue.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Malignant Tumors</h3>
+
+            <p>
+                Invasive tumors capable of metastasis and systemic spread.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Hallmarks of Cancer</h3>
+
+            <p>
+                Sustained proliferation, angiogenesis,
+                invasion, and resistance to apoptosis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ADAPTATION -->
+
+<section class="section" id="adaptation">
+
+    <div class="section-title">
+
+        <h2>🔬 Cellular Adaptation</h2>
+
+        <p>
+            Cells adapt to stress through structural and functional changes.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Hypertrophy</h3>
+
+            <p>
+                Increase in cell size resulting in enlarged organs.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Hyperplasia</h3>
+
+            <p>
+                Increase in cell number due to hormonal or growth stimulation.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Metaplasia</h3>
+
+            <p>
+                Replacement of one mature cell type with another.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Atrophy</h3>
+
+            <p>
+                Decrease in cell size due to reduced workload or nutrition.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FLASHCARDS -->
+
+<section class="section" id="flashcards">
+
+    <div class="section-title">
+
+        <h2>🧠 Flashcards</h2>
+
+        <p>
+            Hover over cards to reveal answers.
+        </p>
+
+    </div>
+
+    <div class="flash-grid">
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Necrosis vs apoptosis?
+                </div>
+
+                <div class="back">
+                    Necrosis = uncontrolled death,
+                    apoptosis = programmed death
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Main cell in acute inflammation?
+                </div>
+
+                <div class="back">
+                    Neutrophils
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Hallmark of cancer?
+                </div>
+
+                <div class="back">
+                    Uncontrolled cellular proliferation
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    What is metaplasia?
+                </div>
+
+                <div class="back">
+                    Replacement of one mature cell type by another
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MCQ -->
+
+<section class="section" id="mcq">
+
+    <div class="section-title">
+
+        <h2>📝 MCQs</h2>
+
+        <p>
+            Test your pathology knowledge.
+        </p>
+
+    </div>
+
+    <div class="mcq">
+
+        Which condition represents irreversible injury?<br><br>
+
+        A. Cell swelling<br>
+        B. Necrosis<br>
+        C. Hyperplasia<br>
+        D. Adaptation
+
+        <br>
+
+        <button onclick="toggleAnswer('m1')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="m1">
+
+            Correct Answer: B. Necrosis
+
+        </div>
+
+    </div>
+
+    <div class="mcq">
+
+        Main inflammatory cell in acute inflammation?
+
+        <br>
+
+        <button onclick="toggleAnswer('m2')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="m2">
+
+            Neutrophils
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CASE -->
+
+<section class="section" id="case">
+
+    <div class="section-title">
+
+        <h2>📋 Clinical Case Study</h2>
+
+        <p>
+            Applying pathology concepts clinically.
+        </p>
+
+    </div>
+
+    <div class="case">
+
+        <p>
+            A patient presents with a rapidly enlarging
+            breast mass invading surrounding tissue.
+        </p>
+
+        <br>
+
+        <p>
+            <b>Likely Diagnosis:</b>
+            Malignant neoplasm
+        </p>
+
+        <br>
+
+        <p>
+            <b>Key Concept:</b>
+            Invasion and metastasis
+        </p>
+
+        <br>
+
+        <p>
+            <b>Next Investigation:</b>
+            Tissue biopsy and histopathological examination
+        </p>
+
+    </div>
+
+</section>
+
+<!-- TIPS -->
+
+<section class="section" id="tips">
+
+    <div class="section-title">
+
+        <h2>💡 Clinical Tips</h2>
+
+        <p>
+            High-yield pathology concepts.
+        </p>
+
+    </div>
+
+    <div class="tip">
+        Distinguish reversible from irreversible injury clearly.
+    </div>
+
+    <div class="tip">
+        Acute vs chronic inflammation is heavily tested.
+    </div>
+
+    <div class="tip">
+        Benign tumors may still cause serious complications.
+    </div>
+
+    <div class="tip">
+        Metastasis is a defining feature of malignancy.
+    </div>
+
+</section>
+
+<!-- REFERENCES -->
+
+<section class="section references" id="references">
+
+    <div class="section-title">
+
+        <h2>📚 Recommended References</h2>
+
+        <p>
+            Trusted pathology textbooks and learning resources.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <ul>
+
+            <li>Robbins and Cotran Pathologic Basis of Disease</li>
+
+            <li>Rubin's Pathology</li>
+
+            <li>Robbins Basic Pathology</li>
+
+            <li>Harrison's Principles of Internal Medicine</li>
+
+            <li>Guyton and Hall Textbook of Medical Physiology</li>
+
+            <li>Oxford Handbook of Clinical Pathology</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 MedLearn | Pathology Interactive Learning Module
+
+</footer>
+
+</div>
+
+</body>
+</html>

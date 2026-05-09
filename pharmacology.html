@@ -1,0 +1,726 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmacology | MedLearn</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+display:flex;
+background:linear-gradient(135deg,#020617,#042f2e,#0f172a);
+color:white;
+}
+
+.sidebar{
+width:290px;
+height:100vh;
+position:fixed;
+left:0;
+top:0;
+padding:30px 22px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(18px);
+overflow-y:auto;
+border-right:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+font-size:2.3rem;
+font-weight:700;
+margin-bottom:12px;
+background:linear-gradient(90deg,#14b8a6,#facc15);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logo-sub{
+line-height:1.9;
+color:#cbd5e1;
+margin-bottom:30px;
+font-size:0.95rem;
+}
+
+.sidebar a{
+display:block;
+padding:15px 18px;
+margin:10px 0;
+text-decoration:none;
+color:#ecfeff;
+border-radius:16px;
+background:rgba(255,255,255,0.03);
+transition:0.3s;
+}
+
+.sidebar a:hover{
+transform:translateX(8px);
+background:linear-gradient(135deg,rgba(20,184,166,0.25),rgba(250,204,21,0.18));
+}
+
+.main{
+margin-left:290px;
+width:calc(100% - 290px);
+}
+
+.hero{
+min-height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:80px 10%;
+}
+
+.hero-content{
+max-width:1000px;
+}
+
+.hero h1{
+font-size:5rem;
+margin-bottom:25px;
+background:linear-gradient(90deg,#14b8a6,#facc15,#2dd4bf);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:1.1rem;
+line-height:2;
+color:#d1fae5;
+}
+
+.section{
+padding:75px 8%;
+}
+
+.section-title{
+margin-bottom:30px;
+}
+
+.section-title h2{
+font-size:2.5rem;
+margin-bottom:15px;
+color:#5eead4;
+}
+
+.section-title p{
+line-height:2;
+color:#d1fae5;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+padding:28px;
+border-radius:24px;
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.06);
+transition:0.35s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 18px 40px rgba(0,0,0,0.35);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#facc15;
+}
+
+.card p{
+line-height:1.9;
+color:#e2e8f0;
+}
+
+.hero-buttons{
+margin-top:35px;
+}
+
+.hero-buttons a{
+display:inline-block;
+padding:14px 28px;
+margin:10px;
+text-decoration:none;
+font-weight:600;
+border-radius:16px;
+transition:0.3s;
+}
+
+.primary-btn{
+background:linear-gradient(135deg,#14b8a6,#0f766e);
+color:white;
+}
+
+.secondary-btn{
+border:1px solid rgba(255,255,255,0.15);
+color:white;
+}
+
+.hero-buttons a:hover{
+transform:translateY(-5px);
+}
+
+.flash-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.flashcard{
+perspective:1000px;
+height:220px;
+}
+
+.inner{
+position:relative;
+width:100%;
+height:100%;
+transform-style:preserve-3d;
+transition:0.8s;
+}
+
+.flashcard:hover .inner{
+transform:rotateY(180deg);
+}
+
+.front,.back{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:24px;
+padding:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+backface-visibility:hidden;
+font-weight:600;
+}
+
+.front{
+background:linear-gradient(135deg,#14b8a6,#0f766e);
+}
+
+.back{
+background:linear-gradient(135deg,#eab308,#ca8a04);
+transform:rotateY(180deg);
+color:#111827;
+}
+
+.mcq{
+background:rgba(255,255,255,0.05);
+padding:28px;
+border-radius:22px;
+margin-bottom:22px;
+}
+
+button{
+margin-top:16px;
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#14b8a6,#facc15);
+font-weight:600;
+cursor:pointer;
+}
+
+.answer{
+display:none;
+margin-top:16px;
+padding:14px;
+border-radius:12px;
+background:rgba(20,184,166,0.15);
+color:#f0fdfa;
+}
+
+.case{
+background:rgba(255,255,255,0.06);
+padding:32px;
+border-radius:24px;
+line-height:2;
+}
+
+.tip{
+background:linear-gradient(135deg,#14b8a6,#5eead4);
+color:#042f2e;
+padding:16px 18px;
+border-radius:14px;
+margin-bottom:15px;
+font-weight:600;
+}
+
+.references ul{
+padding-left:22px;
+line-height:2.5;
+color:#e2e8f0;
+}
+
+footer{
+text-align:center;
+padding:45px;
+color:#cbd5e1;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+@media(max-width:950px){
+body{
+flex-direction:column;
+}
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+}
+
+.main{
+margin-left:0;
+width:100%;
+}
+
+.hero h1{
+font-size:3.4rem;
+}
+}
+</style>
+
+<script>
+function toggleAnswer(id){
+let el=document.getElementById(id);
+el.style.display=el.style.display==='block'?'none':'block';
+}
+</script>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">MedLearn</div>
+
+<div class="logo-sub">
+Interactive Pharmacology Learning Module
+for Medical Students & Clinical Revision
+</div>
+
+<a href="#intro">🏠 Introduction</a>
+<a href="#pk">💊 Pharmacokinetics</a>
+<a href="#pd">⚡ Pharmacodynamics</a>
+<a href="#metabolism">🧪 Drug Metabolism</a>
+<a href="#autonomic">🫀 Autonomic Drugs</a>
+<a href="#antibiotics">🦠 Antibiotics</a>
+<a href="#adr">⚠️ Adverse Reactions</a>
+<a href="#flash">🧠 Flashcards</a>
+<a href="#mcq">📝 MCQs</a>
+<a href="#case">📋 Case Study</a>
+<a href="#tips">💡 Clinical Tips</a>
+<a href="#references">📚 References</a>
+<a href="index.html">⬅ Back Home</a>
+
+</div>
+
+<div class="main">
+
+<section class="hero" id="intro">
+<div class="hero-content">
+
+<h1>Pharmacology</h1>
+
+<p>
+Pharmacology is the study of drugs, their mechanisms,
+therapeutic effects, adverse reactions, metabolism,
+and interactions within the human body.
+It combines physiology, pathology, and biochemistry
+to understand how medications influence biological systems.
+
+</p>
+
+<div class="hero-buttons">
+<a href="#pk" class="primary-btn">Explore Module</a>
+<a href="#flash" class="secondary-btn">Quick Revision</a>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="pk">
+<div class="section-title">
+<h2>💊 Pharmacokinetics</h2>
+<p>
+Pharmacokinetics describes what the body does to a drug.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Absorption</h3>
+<p>
+Movement of a drug from administration site into circulation.
+Influenced by pH, blood flow, and formulation.
+</p>
+</div>
+
+<div class="card">
+<h3>Distribution</h3>
+<p>
+Transport of drugs throughout body tissues and plasma.
+Protein binding affects free drug availability.
+</p>
+</div>
+
+<div class="card">
+<h3>Excretion</h3>
+<p>
+Removal of drugs mainly through kidneys and bile.
+Renal clearance is clinically important.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="pd">
+<div class="section-title">
+<h2>⚡ Pharmacodynamics</h2>
+<p>
+Pharmacodynamics explains what a drug does to the body.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Agonists</h3>
+<p>
+Bind and activate receptors to produce a biological response.
+</p>
+</div>
+
+<div class="card">
+<h3>Antagonists</h3>
+<p>
+Bind receptors but prevent receptor activation.
+</p>
+</div>
+
+<div class="card">
+<h3>Therapeutic Index</h3>
+<p>
+Measure of drug safety comparing toxic dose to effective dose.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="metabolism">
+<div class="section-title">
+<h2>🧪 Drug Metabolism</h2>
+<p>
+Drug metabolism primarily occurs in the liver.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Phase I</h3>
+<p>
+Oxidation, reduction, and hydrolysis reactions mainly via CYP450.
+</p>
+</div>
+
+<div class="card">
+<h3>Phase II</h3>
+<p>
+Conjugation reactions increase water solubility.
+</p>
+</div>
+
+<div class="card">
+<h3>First-Pass Effect</h3>
+<p>
+Drug metabolism before entering systemic circulation.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="autonomic">
+<div class="section-title">
+<h2>🫀 Autonomic Drugs</h2>
+<p>
+Drugs targeting sympathetic and parasympathetic systems.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Beta Blockers</h3>
+<p>
+Reduce heart rate and blood pressure via β-receptor blockade.
+</p>
+</div>
+
+<div class="card">
+<h3>Adrenergic Agonists</h3>
+<p>
+Stimulate sympathetic nervous system activity.
+</p>
+</div>
+
+<div class="card">
+<h3>Anticholinergics</h3>
+<p>
+Block parasympathetic muscarinic receptors.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="antibiotics">
+<div class="section-title">
+<h2>🦠 Antibiotics</h2>
+<p>
+Antimicrobial agents used to treat bacterial infections.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Penicillins</h3>
+<p>
+Inhibit bacterial cell wall synthesis.
+</p>
+</div>
+
+<div class="card">
+<h3>Macrolides</h3>
+<p>
+Inhibit bacterial protein synthesis.
+</p>
+</div>
+
+<div class="card">
+<h3>Aminoglycosides</h3>
+<p>
+Effective against gram-negative organisms but nephrotoxic.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="adr">
+<div class="section-title">
+<h2>⚠️ Adverse Drug Reactions</h2>
+<p>
+Understanding side effects is critical in clinical medicine.
+</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Type A</h3>
+<p>
+Dose-dependent predictable reactions.
+</p>
+</div>
+
+<div class="card">
+<h3>Type B</h3>
+<p>
+Unpredictable hypersensitivity reactions.
+</p>
+</div>
+
+<div class="card">
+<h3>Drug Interactions</h3>
+<p>
+Can alter drug efficacy or toxicity.
+</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="flash">
+<div class="section-title">
+<h2>🧠 Flashcards</h2>
+<p>
+Hover to reveal answers.
+</p>
+</div>
+
+<div class="flash-grid">
+
+<div class="flashcard">
+<div class="inner">
+<div class="front">Main CYP450 organ?</div>
+<div class="back">Liver</div>
+</div>
+</div>
+
+<div class="flashcard">
+<div class="inner">
+<div class="front">First-pass metabolism?</div>
+<div class="back">Drug metabolism before systemic circulation</div>
+</div>
+</div>
+
+<div class="flashcard">
+<div class="inner">
+<div class="front">Beta blocker effect?</div>
+<div class="back">↓ Heart rate & BP</div>
+</div>
+</div>
+
+<div class="flashcard">
+<div class="inner">
+<div class="front">Competitive antagonist?</div>
+<div class="back">Blocks receptor binding reversibly</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="mcq">
+<div class="section-title">
+<h2>📝 MCQs</h2>
+<p>
+Test your pharmacology concepts.
+</p>
+</div>
+
+<div class="mcq">
+Which organ metabolizes most drugs?<br><br>
+A. Heart<br>
+B. Kidney<br>
+C. Liver<br>
+D. Lung
+
+<button onclick="toggleAnswer('p1')">Show Answer</button>
+
+<div class="answer" id="p1">
+Correct Answer: C. Liver
+</div>
+</div>
+
+<div class="mcq">
+Competitive antagonists primarily:<br><br>
+A. Destroy receptors<br>
+B. Increase efficacy<br>
+C. Block receptor activation<br>
+D. Cause irreversible activation
+
+<button onclick="toggleAnswer('p2')">Show Answer</button>
+
+<div class="answer" id="p2">
+Correct Answer: C. Block receptor activation
+</div>
+</div>
+
+</section>
+
+<section class="section" id="case">
+<div class="section-title">
+<h2>📋 Clinical Case Study</h2>
+<p>
+Applying pharmacology clinically.
+</p>
+</div>
+
+<div class="case">
+<p>
+A patient with hypertension and tachycardia
+is started on propranolol.
+</p>
+
+<br>
+
+<p>
+<b>Drug Class:</b> Non-selective beta blocker
+</p>
+
+<br>
+
+<p>
+<b>Mechanism:</b>
+Blocks β1 receptors reducing heart rate and cardiac output.
+</p>
+
+<br>
+
+<p>
+<b>Monitoring:</b>
+Watch for bradycardia, hypotension, and bronchospasm.
+</p>
+</div>
+</section>
+
+<section class="section" id="tips">
+<div class="section-title">
+<h2>💡 Clinical Tips</h2>
+<p>
+High-yield pharmacology principles.
+</p>
+</div>
+
+<div class="tip">
+Always learn mechanism + side effects together.
+</div>
+
+<div class="tip">
+Know major CYP450 inducers and inhibitors.
+</div>
+
+<div class="tip">
+Toxicity questions are common in exams.
+</div>
+
+<div class="tip">
+Understand receptor physiology before memorizing drugs.
+</div>
+
+</section>
+
+<section class="section references" id="references">
+<div class="section-title">
+<h2>📚 References</h2>
+<p>
+Trusted pharmacology textbooks and resources.
+</p>
+</div>
+
+<div class="card">
+<ul>
+<li>Katzung Basic & Clinical Pharmacology</li>
+<li>Rang and Dale Pharmacology</li>
+<li>Goodman & Gilman's Pharmacological Basis of Therapeutics</li>
+<li>Harrison's Principles of Internal Medicine</li>
+<li>Lippincott Illustrated Reviews: Pharmacology</li>
+</ul>
+</div>
+</section>
+
+<footer>
+© 2026 MedLearn | Pharmacology Interactive Learning Module
+</footer>
+
+</div>
+
+</body>
+</html>
+```

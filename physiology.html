@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physiology | MedLearn</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    display:flex;
+    background:
+    radial-gradient(circle at top left,#14532d 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#166534 0%,transparent 30%),
+    linear-gradient(135deg,#020617,#052e16,#064e3b);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    padding:30px 20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border-right:1px solid rgba(255,255,255,0.08);
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#22c55e,#86efac);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.sidebar p{
+    color:#bbf7d0;
+    font-size:0.9rem;
+    margin-bottom:30px;
+}
+
+.sidebar h3{
+    color:#4ade80;
+    margin-bottom:15px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px 14px;
+    margin-bottom:10px;
+    border-radius:12px;
+    text-decoration:none;
+    color:#d1fae5;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.08);
+    transform:translateX(5px);
+    color:#4ade80;
+}
+
+/* MAIN */
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* HERO */
+.hero{
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 10%;
+    position:relative;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(34,197,94,0.12);
+    border-radius:50%;
+    filter:blur(100px);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1000px;
+}
+
+.hero h1{
+    font-size:5rem;
+    margin-bottom:25px;
+    line-height:1.1;
+    background:linear-gradient(90deg,#4ade80,#86efac,#dcfce7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:#d1fae5;
+    line-height:2;
+    font-size:1.15rem;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-buttons a{
+    display:inline-block;
+    margin:10px;
+    padding:15px 28px;
+    border-radius:14px;
+    text-decoration:none;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    color:white;
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.hero-buttons a:hover{
+    transform:translateY(-5px);
+}
+
+/* SECTION */
+.section{
+    padding:80px 8%;
+}
+
+.section-title{
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:2.7rem;
+    margin-bottom:15px;
+    color:#86efac;
+}
+
+.section-title p{
+    color:#d1fae5;
+    line-height:1.8;
+}
+
+/* GLASS CARD */
+.glass{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:30px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+/* CARDS */
+.card{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:30px;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.08);
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+    top:-40px;
+    right:-40px;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 35px rgba(0,0,0,0.4);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#86efac;
+}
+
+.card p{
+    color:#d1fae5;
+    line-height:1.8;
+}
+
+/* DIAGRAM */
+.diagram{
+    text-align:center;
+}
+
+.diagram img{
+    width:100%;
+    max-width:450px;
+    border-radius:25px;
+    margin-top:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* MECHANISMS */
+.mechanism{
+    margin-bottom:20px;
+}
+
+.mechanism h4{
+    color:#4ade80;
+    margin-bottom:10px;
+}
+
+/* FLASHCARDS */
+.flash-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.flashcard{
+    perspective:1000px;
+    height:220px;
+}
+
+.inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transition:transform 0.8s;
+    transform-style:preserve-3d;
+}
+
+.flashcard:hover .inner{
+    transform:rotateY(180deg);
+}
+
+.front,.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:25px;
+    padding:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    backface-visibility:hidden;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.front{
+    background:linear-gradient(135deg,#22c55e,#15803d);
+}
+
+.back{
+    background:linear-gradient(135deg,#10b981,#047857);
+    transform:rotateY(180deg);
+}
+
+/* MCQ */
+.mcq{
+    background:rgba(255,255,255,0.06);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+}
+
+.mcq p{
+    line-height:1.8;
+    color:#ecfdf5;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+.answer{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(34,197,94,0.15);
+    color:#86efac;
+}
+
+/* CASE */
+.case{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:35px;
+    line-height:2;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th,td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+th{
+    color:#86efac;
+}
+
+/* TIPS */
+.tip{
+    background:linear-gradient(135deg,#bbf7d0,#4ade80);
+    color:#022c22;
+    padding:15px 20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    font-weight:600;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#bbf7d0;
+    border-top:1px solid rgba(255,255,255,0.08);
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+}
+
+</style>
+
+<script>
+
+function toggleAnswer(id){
+    let el=document.getElementById(id);
+
+    if(el.style.display==="block"){
+        el.style.display="none";
+    }else{
+        el.style.display="block";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">MedLearn</div>
+
+    <p>Interactive Physiology Learning Module</p>
+
+    <h3>Navigation</h3>
+
+    <a href="#intro">Introduction</a>
+    <a href="#homeostasis">Homeostasis</a>
+    <a href="#systems">Body Systems</a>
+    <a href="#mechanisms">Mechanisms</a>
+    <a href="#transport">Transport</a>
+    <a href="#flashcards">Flashcards</a>
+    <a href="#mcqs">MCQs</a>
+    <a href="#case">Clinical Case</a>
+    <a href="#tips">Clinical Tips</a>
+    <a href="#references">References</a>
+
+    <!-- CONNECTED TO MAIN PAGE -->
+    <a href="index.html">⬅ Back to MedLearn Home</a>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- HERO -->
+<section class="hero" id="intro">
+
+    <div class="hero-content">
+
+        <h1>Human Physiology</h1>
+
+        <p>
+            Physiology is the scientific study of how the human body functions.
+            It explains how cells, tissues, organs, and systems interact to maintain life,
+            preserve homeostasis, and respond to internal and external changes.
+            Understanding physiology forms the foundation of medicine, linking normal body
+            function with disease processes, diagnostics, and clinical treatment.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#systems" class="primary-btn">Explore Systems</a>
+            <a href="#flashcards" class="secondary-btn">Start Revision</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HOMEOSTASIS -->
+<section class="section" id="homeostasis">
+
+    <div class="section-title">
+        <h2>⚖️ Homeostasis</h2>
+        <p>
+            Homeostasis maintains a stable internal environment through feedback mechanisms.
+            Most physiological systems operate using negative feedback loops.
+        </p>
+    </div>
+
+    <div class="glass diagram">
+
+        
+
+        <div style="margin-top:30px;">
+            <p style="line-height:2;color:#d1fae5;">
+                Examples include regulation of blood glucose, body temperature,
+                blood pressure, blood pH, and fluid balance.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SYSTEMS -->
+<section class="section" id="systems">
+
+    <div class="section-title">
+        <h2>🧬 Major Physiological Systems</h2>
+        <p>Each system contributes to maintaining life and internal balance.</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Cardiovascular</h3>
+            <p>
+                Circulates oxygen, nutrients, hormones, and immune cells throughout the body.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Respiratory</h3>
+            <p>
+                Responsible for oxygen uptake and carbon dioxide elimination.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Renal</h3>
+            <p>
+                Controls fluid balance, electrolyte regulation, and waste excretion.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Endocrine</h3>
+            <p>
+                Uses hormones to coordinate long-term body regulation and metabolism.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Nervous</h3>
+            <p>
+                Enables rapid communication, reflexes, cognition, and coordination.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Gastrointestinal</h3>
+            <p>
+                Digests food, absorbs nutrients, and maintains metabolic support.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MECHANISMS -->
+<section class="section" id="mechanisms">
+
+    <div class="section-title">
+        <h2>⚡ Core Physiological Mechanisms</h2>
+        <p>Basic cellular processes that sustain life.</p>
+    </div>
+
+    <div class="glass">
+
+        <div class="mechanism">
+            <h4>Diffusion</h4>
+            <p>Movement of substances from high to low concentration without energy.</p>
+        </div>
+
+        <div class="mechanism">
+            <h4>Osmosis</h4>
+            <p>Passive movement of water across semipermeable membranes.</p>
+        </div>
+
+        <div class="mechanism">
+            <h4>Active Transport</h4>
+            <p>ATP-dependent transport against a concentration gradient.</p>
+        </div>
+
+        <div class="mechanism">
+            <h4>Cell Signaling</h4>
+            <p>Communication between cells through hormones and neurotransmitters.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TRANSPORT -->
+<section class="section" id="transport">
+
+    <div class="section-title">
+        <h2>🩸 Physiological Transport Overview</h2>
+        <p>Major forms of transport occurring in the body.</p>
+    </div>
+
+    <div class="glass">
+
+        <table>
+
+            <tr>
+                <th>Process</th>
+                <th>Energy Needed</th>
+                <th>Example</th>
+            </tr>
+
+            <tr>
+                <td>Diffusion</td>
+                <td>No</td>
+                <td>Oxygen movement in lungs</td>
+            </tr>
+
+            <tr>
+                <td>Osmosis</td>
+                <td>No</td>
+                <td>Water movement in kidneys</td>
+            </tr>
+
+            <tr>
+                <td>Active Transport</td>
+                <td>Yes (ATP)</td>
+                <td>Sodium-potassium pump</td>
+            </tr>
+
+            <tr>
+                <td>Filtration</td>
+                <td>No</td>
+                <td>Glomerular filtration</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards">
+
+    <div class="section-title">
+        <h2>🧠 Interactive Flashcards</h2>
+        <p>Hover to reveal answers.</p>
+    </div>
+
+    <div class="flash-grid">
+
+        <div class="flashcard">
+            <div class="inner">
+                <div class="front">
+                    What is the primary feedback mechanism in physiology?
+                </div>
+
+                <div class="back">
+                    Negative feedback
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard">
+            <div class="inner">
+                <div class="front">
+                    Main role of ATP?
+                </div>
+
+                <div class="back">
+                    Cellular energy transfer
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard">
+            <div class="inner">
+                <div class="front">
+                    Hormonal control system?
+                </div>
+
+                <div class="back">
+                    Endocrine system
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard">
+            <div class="inner">
+                <div class="front">
+                    Main gas exchanged in lungs?
+                </div>
+
+                <div class="back">
+                    Oxygen and carbon dioxide
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MCQS -->
+<section class="section" id="mcqs">
+
+    <div class="section-title">
+        <h2>📝 Physiology MCQs</h2>
+        <p>Test your understanding with interactive questions.</p>
+    </div>
+
+    <div class="mcq">
+        <p>
+            Which of the following is a passive transport mechanism?<br><br>
+            A. Endocytosis<br>
+            B. Active transport<br>
+            C. Diffusion<br>
+            D. Sodium-potassium pump
+        </p>
+
+        <button onclick="toggleAnswer('a1')">Show Answer</button>
+
+        <div class="answer" id="a1">
+            Correct Answer: C. Diffusion
+        </div>
+    </div>
+
+    <div class="mcq">
+        <p>
+            Which organ primarily regulates blood glucose levels?
+        </p>
+
+        <button onclick="toggleAnswer('a2')">Show Answer</button>
+
+        <div class="answer" id="a2">
+            Pancreas
+        </div>
+    </div>
+
+    <div class="mcq">
+        <p>
+            Which physiological system is responsible for rapid signaling?
+        </p>
+
+        <button onclick="toggleAnswer('a3')">Show Answer</button>
+
+        <div class="answer" id="a3">
+            Nervous system
+        </div>
+    </div>
+
+</section>
+
+<!-- CASE -->
+<section class="section" id="case">
+
+    <div class="section-title">
+        <h2>🩺 Clinical Case Study</h2>
+        <p>Apply physiology concepts to clinical reasoning.</p>
+    </div>
+
+    <div class="case">
+
+        <p><b>Patient:</b> 52-year-old male with fatigue, excessive thirst, and elevated fasting blood glucose.</p>
+
+        <p><b>Physiological Issue:</b> Impaired insulin regulation causing disruption of glucose homeostasis.</p>
+
+        <p><b>System Involved:</b> Endocrine system (pancreatic beta-cell dysfunction).</p>
+
+        <p><b>Likely Diagnosis:</b> Type 2 Diabetes Mellitus.</p>
+
+        <p><b>Key Concept:</b> Homeostatic imbalance due to hormone dysregulation.</p>
+
+    </div>
+
+</section>
+
+<!-- TIPS -->
+<section class="section" id="tips">
+
+    <div class="section-title">
+        <h2>🧪 Clinical Learning Tips</h2>
+        <p>How to study physiology effectively.</p>
+    </div>
+
+    <div class="tip">Always identify the affected physiological system first.</div>
+    <div class="tip">Connect mechanisms directly to clinical symptoms.</div>
+    <div class="tip">Think in feedback loops and compensation mechanisms.</div>
+    <div class="tip">Use active recall and spaced repetition frequently.</div>
+    <div class="tip">Relate physiology to pathology for deeper understanding.</div>
+
+</section>
+
+<!-- REFERENCES -->
+<section class="section" id="references">
+
+    <div class="section-title">
+        <h2>📚 Recommended References</h2>
+        <p>Core textbooks commonly used in medical education.</p>
+    </div>
+
+    <div class="glass">
+
+        <ul style="line-height:2.2;color:#d1fae5;padding-left:20px;">
+
+            <li>Guyton and Hall Textbook of Medical Physiology</li>
+            <li>Ganong's Review of Medical Physiology</li>
+            <li>Boron & Boulpaep Medical Physiology</li>
+            <li>Costanzo Physiology</li>
+            <li>Harrison's Principles of Internal Medicine</li>
+            <li>Netter Atlas of Human Anatomy</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    © 2026 MedLearn | Physiology Interactive Learning Module
+
+</footer>
+
+</div>
+
+</body>
+</html>

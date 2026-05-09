@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedLearn - Medical Learning Platform</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at top left,#1e3a8a 0%,transparent 25%),
+    radial-gradient(circle at bottom right,#7c3aed 0%,transparent 25%),
+    linear-gradient(135deg,#020617,#0f172a,#111827);
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* LOGO HEADER */
+.top-heading{
+    text-align:center;
+    padding:30px 20px 10px;
+}
+
+.logo{
+    font-size:2.2rem;
+    font-weight:700;
+    background:linear-gradient(90deg,#38bdf8,#a78bfa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:70px 10% 70px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+    line-height:1.1;
+    background:linear-gradient(90deg,#38bdf8,#818cf8,#c084fc);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:900px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.9;
+    font-size:1.1rem;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-buttons a{
+    display:inline-block;
+    margin:10px;
+    padding:14px 28px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#0ea5e9,#6366f1);
+    color:white;
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,0.2);
+    color:white;
+}
+
+.hero-buttons a:hover{
+    transform:translateY(-4px);
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px 8% 60px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,0.06);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.stat-box h2{
+    font-size:2.3rem;
+    color:#38bdf8;
+}
+
+.stat-box p{
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+/* SECTION TITLE */
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#cbd5e1;
+}
+
+/* CARDS */
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding:0 8% 80px;
+}
+
+.card{
+    background:rgba(255,255,255,0.07);
+    border-radius:25px;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50%;
+    top:-30px;
+    right:-30px;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 20px 40px rgba(0,0,0,0.45);
+}
+
+.card h2{
+    font-size:1.7rem;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#e2e8f0;
+    line-height:1.8;
+    margin-bottom:20px;
+    font-size:0.95rem;
+}
+
+.card ul{
+    margin-bottom:25px;
+    padding-left:18px;
+    color:#cbd5e1;
+    line-height:1.8;
+    font-size:0.92rem;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn:hover{
+    opacity:0.85;
+}
+
+/* CARD COLORS */
+.neuro{background:linear-gradient(135deg,#06b6d4,#2563eb);}
+.cardio{background:linear-gradient(135deg,#ef4444,#f97316);}
+.physio{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.patho{background:linear-gradient(135deg,#8b5cf6,#6366f1);}
+.pulmo{background:linear-gradient(135deg,#0ea5e9,#06b6d4);}
+.pharma{background:linear-gradient(135deg,#ec4899,#db2777);}
+
+/* REFERENCES */
+.references{
+    padding:70px 10%;
+}
+
+.references-box{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:35px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+}
+
+.references h2{
+    margin-bottom:20px;
+    font-size:2rem;
+}
+
+.references ul{
+    line-height:2;
+    color:#e2e8f0;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+    border-top:1px solid rgba(255,255,255,0.08);
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .logo{
+        font-size:1.8rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADING -->
+<div class="top-heading">
+    <div class="logo">MedLearn</div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <h1>Future Doctors Start Here</h1>
+
+    <p>
+        MedLearn is an advanced interactive medical learning platform designed to simplify
+        complex medical sciences through structured modules, visual learning, clinical integration,
+        quizzes, and active recall systems. The platform provides students with a modern digital
+        environment to master anatomy, physiology, pathology, pharmacology, and clinical medicine
+        while strengthening diagnostic reasoning and long-term memory retention.
+    </p>
+
+    <div class="hero-buttons">
+
+        <!-- BUTTON 1 -->
+        <a href="#courses-section" class="primary-btn">
+            Start Learning
+        </a>
+
+        <!-- BUTTON 2 -->
+        <a href="#references-section" class="secondary-btn">
+            Explore References
+        </a>
+
+    </div>
+
+</section>
+
+<!-- STATS -->
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>500+</h2>
+        <p>Medical Concepts</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>150+</h2>
+        <p>Clinical Cases</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>1000+</h2>
+        <p>Interactive Flashcards</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Learning Access</p>
+    </div>
+
+</section>
+
+<!-- TITLE -->
+<div class="section-title" id="courses-section">
+    <h2>Core Medical Branches</h2>
+    <p>Comprehensive medical education designed for modern healthcare students</p>
+</div>
+
+<!-- MEDICAL CARDS -->
+<div class="container">
+
+    <!-- NEUROLOGY -->
+    <div class="card">
+        <h2>Neurology</h2>
+
+        <p>
+            Study the nervous system including neuroanatomy, neural pathways,
+            neurotransmission, sensory and motor systems, and neurological disorders.
+        </p>
+
+        <ul>
+            <li>Brain & spinal cord anatomy</li>
+            <li>Stroke and seizure disorders</li>
+            <li>Neurodegenerative diseases</li>
+            <li>Cranial nerves and reflexes</li>
+        </ul>
+
+        <a href="neurology.html" class="btn neuro">Explore Module</a>
+    </div>
+
+    <!-- CARDIOLOGY -->
+    <div class="card">
+        <h2>Cardiology</h2>
+
+        <p>
+            Learn cardiovascular physiology, cardiac electrophysiology, ECG interpretation,
+            and major cardiovascular diseases affecting global populations.
+        </p>
+
+        <ul>
+            <li>Cardiac cycle & circulation</li>
+            <li>Heart failure & hypertension</li>
+            <li>ECG interpretation</li>
+            <li>Coronary artery disease</li>
+        </ul>
+
+        <a href="cardiology.html" class="btn cardio">Explore Module</a>
+    </div>
+
+    <!-- PHYSIOLOGY -->
+    <div class="card">
+        <h2>Physiology</h2>
+
+        <p>
+            Understand how body systems function together through mechanisms of
+            homeostasis, hormonal signaling, cellular transport, and organ integration.
+        </p>
+
+        <ul>
+            <li>Fluid & electrolyte balance</li>
+            <li>Endocrine regulation</li>
+            <li>Renal physiology</li>
+            <li>Cellular metabolism</li>
+        </ul>
+
+        <a href="physiology.html" class="btn physio">Explore Module</a>
+    </div>
+
+    <!-- PATHOLOGY -->
+    <div class="card">
+        <h2>Pathology</h2>
+
+        <p>
+            Explore mechanisms of disease including inflammation, neoplasia,
+            cellular injury, tissue adaptation, and systemic pathological processes.
+        </p>
+
+        <ul>
+            <li>Inflammation & healing</li>
+            <li>Cancer biology</li>
+            <li>Cell injury & necrosis</li>
+            <li>Diagnostic pathology</li>
+        </ul>
+
+        <a href="pathology.html" class="btn patho">Explore Module</a>
+    </div>
+
+    <!-- PULMONOLOGY -->
+    <div class="card">
+        <h2>Pulmonology</h2>
+
+        <p>
+            Learn respiratory physiology, pulmonary diseases, gas exchange,
+            respiratory diagnostics, and evidence-based respiratory care.
+        </p>
+
+        <ul>
+            <li>Asthma & COPD</li>
+            <li>Lung function testing</li>
+            <li>Gas transport physiology</li>
+            <li>Pneumonia & infections</li>
+        </ul>
+
+        <a href="pulmonology.html" class="btn pulmo">Explore Module</a>
+    </div>
+
+    <!-- PHARMACOLOGY -->
+    <div class="card">
+        <h2>Pharmacology</h2>
+
+        <p>
+            Understand mechanisms of drug action, pharmacokinetics,
+            pharmacodynamics, therapeutic uses, and adverse drug reactions.
+        </p>
+
+        <ul>
+            <li>Drug classifications</li>
+            <li>Antibiotics & resistance</li>
+            <li>Autonomic pharmacology</li>
+            <li>Clinical therapeutics</li>
+        </ul>
+
+        <a href="pharmacology.html" class="btn pharma">Explore Module</a>
+    </div>
+
+</div>
+
+<!-- REFERENCES -->
+<section class="references" id="references-section">
+
+    <div class="references-box">
+
+        <h2>Recommended Medical References</h2>
+
+        <ul>
+            <li>Guyton and Hall Textbook of Medical Physiology (14th Edition)</li>
+            <li>Robbins and Cotran Pathologic Basis of Disease (10th Edition)</li>
+            <li>Gray's Anatomy for Students (4th Edition)</li>
+            <li>Goodman & Gilman's The Pharmacological Basis of Therapeutics</li>
+            <li>Harrison's Principles of Internal Medicine (21st Edition)</li>
+            <li>Ganong's Review of Medical Physiology</li>
+            <li>Netter Atlas of Human Anatomy</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 MedLearn | Interactive Medical Education Platform for Future Healthcare Professionals
+</footer>
+
+</body>
+</html>

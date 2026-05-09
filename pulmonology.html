@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pulmonology | MedLearn</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    display:flex;
+    background:
+    linear-gradient(135deg,#020617,#082f49,#0c4a6e);
+    color:white;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border-right:1px solid rgba(255,255,255,0.08);
+    padding:30px 20px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.logo{
+    font-size:2.2rem;
+    font-weight:700;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#38bdf8,#67e8f9);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.sidebar p{
+    color:#bae6fd;
+    margin-bottom:30px;
+    line-height:1.7;
+    font-size:0.9rem;
+}
+
+.nav-title{
+    color:#38bdf8;
+    margin-bottom:15px;
+    font-size:1.1rem;
+}
+
+.sidebar a{
+    display:block;
+    padding:13px 15px;
+    margin-bottom:12px;
+    text-decoration:none;
+    color:#dbeafe;
+    border-radius:14px;
+    transition:0.3s;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.08);
+    transform:translateX(6px);
+    color:#22d3ee;
+}
+
+/* MAIN */
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* HERO */
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 10%;
+    position:relative;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(14,165,233,0.12);
+    border-radius:50%;
+    filter:blur(120px);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1000px;
+}
+
+.hero h1{
+    font-size:5rem;
+    margin-bottom:25px;
+    line-height:1.1;
+    background:linear-gradient(90deg,#38bdf8,#67e8f9,#e0f2fe);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    line-height:2;
+    color:#dbeafe;
+    font-size:1.1rem;
+}
+
+.hero-buttons{
+    margin-top:35px;
+}
+
+.hero-buttons a{
+    display:inline-block;
+    margin:10px;
+    padding:15px 30px;
+    border-radius:15px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,#0ea5e9,#0284c7);
+    color:white;
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.hero-buttons a:hover{
+    transform:translateY(-5px);
+}
+
+/* SECTION */
+.section{
+    padding:70px 8%;
+}
+
+.section-title{
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:2.7rem;
+    margin-bottom:15px;
+    color:#7dd3fc;
+}
+
+.section-title p{
+    color:#dbeafe;
+    line-height:1.9;
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+.card p{
+    line-height:2;
+    color:#e0f2fe;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.grid-card{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.4s;
+}
+
+.grid-card:hover{
+    transform:translateY(-10px);
+}
+
+.grid-card h3{
+    margin-bottom:15px;
+    color:#7dd3fc;
+}
+
+.grid-card p{
+    line-height:1.8;
+    color:#dbeafe;
+}
+
+/* FLASHCARDS */
+.flash-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.flashcard{
+    perspective:1000px;
+    height:220px;
+}
+
+.inner{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:transform 0.8s;
+}
+
+.flashcard:hover .inner{
+    transform:rotateY(180deg);
+}
+
+.front,.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    backface-visibility:hidden;
+    font-weight:600;
+}
+
+.front{
+    background:linear-gradient(135deg,#0ea5e9,#0369a1);
+}
+
+.back{
+    background:linear-gradient(135deg,#06b6d4,#0e7490);
+    transform:rotateY(180deg);
+}
+
+/* MCQ */
+.mcq{
+    background:rgba(255,255,255,0.06);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.mcq p{
+    line-height:1.9;
+    color:#e0f2fe;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0ea5e9,#0284c7);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+.answer{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(14,165,233,0.12);
+    color:#7dd3fc;
+}
+
+/* CASE */
+.case{
+    background:rgba(255,255,255,0.06);
+    border-radius:25px;
+    padding:35px;
+    line-height:2;
+}
+
+/* TIPS */
+.tip{
+    background:linear-gradient(135deg,#dbeafe,#7dd3fc);
+    padding:15px 20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    color:#082f49;
+    font-weight:600;
+}
+
+/* REFERENCES */
+.references ul{
+    padding-left:20px;
+    line-height:2.3;
+    color:#dbeafe;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#bae6fd;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        width:100%;
+        margin-left:0;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+}
+
+</style>
+
+<script>
+
+function toggleAnswer(id){
+
+    let el=document.getElementById(id);
+
+    if(el.style.display==="block"){
+        el.style.display="none";
+    }else{
+        el.style.display="block";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">MedLearn</div>
+
+    <p>
+        Interactive Pulmonology Learning Module for Medical Students
+    </p>
+
+    <div class="nav-title">Navigation</div>
+
+    <a href="#intro">🏠 Introduction</a>
+    <a href="#anatomy">🫁 Lung Anatomy</a>
+    <a href="#gas">🌬️ Gas Exchange</a>
+    <a href="#abg">🧪 ABG Analysis</a>
+    <a href="#diseases">🩺 Pulmonary Diseases</a>
+    <a href="#flashcards">🧠 Flashcards</a>
+    <a href="#mcq">📝 MCQs</a>
+    <a href="#case">📋 Case Study</a>
+    <a href="#tips">💡 Clinical Tips</a>
+    <a href="#references">📚 References</a>
+
+    <a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- HERO -->
+<section class="hero" id="intro">
+
+    <div class="hero-content">
+
+        <h1>Pulmonology</h1>
+
+        <p>
+            Pulmonology is the branch of medicine focused on the respiratory system,
+            including the lungs, airways, gas exchange mechanisms, and respiratory disorders.
+            Understanding pulmonary physiology and pathology is essential for diagnosing
+            conditions such as asthma, COPD, pneumonia, respiratory failure,
+            and acid-base disturbances.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#anatomy" class="primary-btn">Explore Module</a>
+
+            <a href="#flashcards" class="secondary-btn">Start Revision</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ANATOMY -->
+<section class="section" id="anatomy">
+
+    <div class="section-title">
+
+        <h2>🫁 Lung Anatomy</h2>
+
+        <p>
+            The respiratory system enables ventilation and gas exchange essential for life.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Trachea</h3>
+
+            <p>
+                Main airway conducting air from the larynx to the bronchi.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Bronchi</h3>
+
+            <p>
+                Branching airways distributing air into each lung.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Alveoli</h3>
+
+            <p>
+                Microscopic sacs where oxygen and carbon dioxide exchange occurs.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Pleura</h3>
+
+            <p>
+                Protective membrane surrounding the lungs and reducing friction.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GAS EXCHANGE -->
+<section class="section" id="gas">
+
+    <div class="section-title">
+
+        <h2>🌬️ Gas Exchange</h2>
+
+        <p>
+            Oxygen and carbon dioxide exchange occurs by diffusion across alveolar membranes.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <p>
+            Oxygen diffuses from alveoli into pulmonary capillaries due to higher alveolar
+            oxygen partial pressure, while carbon dioxide diffuses from blood into alveoli
+            for exhalation.
+        </p>
+
+        <br>
+
+        <p>
+            Efficient gas exchange depends on:
+        </p>
+
+        <br>
+
+        <p>
+            • Intact alveolar membrane<br>
+            • Adequate ventilation<br>
+            • Proper perfusion<br>
+            • Normal diffusion gradients
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ABG -->
+<section class="section" id="abg">
+
+    <div class="section-title">
+
+        <h2>🧪 Arterial Blood Gas (ABG)</h2>
+
+        <p>
+            ABG analysis evaluates acid-base balance and respiratory function.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>pH</h3>
+
+            <p>
+                Normal range: 7.35 – 7.45
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>PaCO₂</h3>
+
+            <p>
+                Reflects respiratory control and ventilation status.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>HCO₃⁻</h3>
+
+            <p>
+                Indicates metabolic compensation and renal regulation.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>PaO₂</h3>
+
+            <p>
+                Measures arterial oxygenation efficiency.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DISEASES -->
+<section class="section" id="diseases">
+
+    <div class="section-title">
+
+        <h2>🩺 Common Pulmonary Diseases</h2>
+
+        <p>
+            Important respiratory disorders frequently encountered clinically.
+        </p>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="grid-card">
+
+            <h3>Asthma</h3>
+
+            <p>
+                Chronic inflammatory airway disease causing reversible obstruction.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>COPD</h3>
+
+            <p>
+                Progressive obstructive lung disease associated with smoking.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Pneumonia</h3>
+
+            <p>
+                Infection causing inflammation and fluid accumulation in alveoli.
+            </p>
+
+        </div>
+
+        <div class="grid-card">
+
+            <h3>Pulmonary Fibrosis</h3>
+
+            <p>
+                Restrictive lung disease causing reduced lung compliance.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards">
+
+    <div class="section-title">
+
+        <h2>🧠 Flashcards</h2>
+
+        <p>
+            Hover over cards to reveal answers.
+        </p>
+
+    </div>
+
+    <div class="flash-grid">
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Site of gas exchange?
+                </div>
+
+                <div class="back">
+                    Alveoli
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Increased CO₂ causes?
+                </div>
+
+                <div class="back">
+                    Respiratory acidosis
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Asthma is what type of disease?
+                </div>
+
+                <div class="back">
+                    Obstructive lung disease
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flashcard">
+
+            <div class="inner">
+
+                <div class="front">
+                    Which ABG value reflects oxygenation?
+                </div>
+
+                <div class="back">
+                    PaO₂
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MCQ -->
+<section class="section" id="mcq">
+
+    <div class="section-title">
+
+        <h2>📝 MCQs</h2>
+
+        <p>
+            Test your pulmonology knowledge.
+        </p>
+
+    </div>
+
+    <div class="mcq">
+
+        <p>
+
+            Where does gas exchange primarily occur?<br><br>
+
+            A. Trachea<br>
+            B. Bronchi<br>
+            C. Alveoli<br>
+            D. Pleura
+
+        </p>
+
+        <button onclick="toggleAnswer('p1')">Show Answer</button>
+
+        <div class="answer" id="p1">
+
+            Correct Answer: C. Alveoli
+
+        </div>
+
+    </div>
+
+    <div class="mcq">
+
+        <p>
+
+            Elevated PaCO₂ generally causes what acid-base disturbance?
+
+        </p>
+
+        <button onclick="toggleAnswer('p2')">Show Answer</button>
+
+        <div class="answer" id="p2">
+
+            Respiratory Acidosis
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CASE -->
+<section class="section" id="case">
+
+    <div class="section-title">
+
+        <h2>📋 Clinical Case Study</h2>
+
+        <p>
+            Apply pulmonology concepts clinically.
+        </p>
+
+    </div>
+
+    <div class="case">
+
+        <p>
+
+            A 22-year-old patient presents with wheezing,
+            chest tightness, and shortness of breath after exercise.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            <b>Likely Diagnosis:</b> Asthma
+
+        </p>
+
+        <br>
+
+        <p>
+
+            <b>Mechanism:</b> Reversible airway inflammation and bronchoconstriction
+
+        </p>
+
+        <br>
+
+        <p>
+
+            <b>Type:</b> Obstructive lung disease
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- TIPS -->
+<section class="section" id="tips">
+
+    <div class="section-title">
+
+        <h2>💡 Clinical Tips</h2>
+
+        <p>
+            High-yield concepts for exams and clinical practice.
+        </p>
+
+    </div>
+
+    <div class="tip">
+        Always evaluate oxygen and carbon dioxide together.
+    </div>
+
+    <div class="tip">
+        Differentiate obstructive vs restrictive lung disease clearly.
+    </div>
+
+    <div class="tip">
+        ABG interpretation is a core clinical skill.
+    </div>
+
+    <div class="tip">
+        Ventilation-perfusion mismatch is a common exam topic.
+    </div>
+
+</section>
+
+<!-- REFERENCES -->
+<section class="section references" id="references">
+
+    <div class="section-title">
+
+        <h2>📚 Recommended References</h2>
+
+        <p>
+            Trusted pulmonology and respiratory medicine resources.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <ul>
+
+            <li>Murray & Nadel's Textbook of Respiratory Medicine</li>
+
+            <li>West's Respiratory Physiology</li>
+
+            <li>Harrison's Principles of Internal Medicine</li>
+
+            <li>Guyton and Hall Textbook of Medical Physiology</li>
+
+            <li>Robbins and Cotran Pathologic Basis of Disease</li>
+
+            <li>Oxford Handbook of Respiratory Medicine</li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    © 2026 MedLearn | Pulmonology Interactive Learning Module
+
+</footer>
+
+</div>
+
+</body>
+</html>
